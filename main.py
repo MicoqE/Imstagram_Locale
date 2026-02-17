@@ -38,6 +38,8 @@ def play_video(screen, video_path):
 
     player = MediaPlayer(video_path)
 
+    clock = pygame.time.Clock()
+
     while True:
         frame, val = player.get_frame()
 
@@ -45,22 +47,16 @@ def play_video(screen, video_path):
             break
 
         if frame is not None:
-            img, pts = frame
+            img, t = frame
             w, h = img.get_size()
 
-            image = pygame.image.frombuffer(
-                img.to_bytearray()[0], (w, h), 'RGB'
-            )
+            image = pygame.image.frombuffer(img.to_bytearray()[0], (w, h), 'RGB')
 
             image, x, y = scale_keep_ratio(image, screen)
 
             screen.fill((0, 0, 0))
             screen.blit(image, (x, y))
             pygame.display.update()
-
-            # Synchronisation réelle avec la vidéo
-            if pts:
-                pygame.time.wait(int(pts * 1000))
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -76,6 +72,8 @@ def play_video(screen, video_path):
                     player.close_player()
                     pygame.quit()
                     sys.exit()
+
+        clock.tick(30)
 
     player.close_player()
 
