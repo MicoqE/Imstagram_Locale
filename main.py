@@ -33,8 +33,8 @@ def scale_keep_ratio(image, screen):
 
     return image, x, y
 
-def play_video(screen, video_path):
-    print("Lecture :", video_path)
+def play_video(screen, video_path, n):
+    print(f"Lecture {n} :", video_path)
 
     player = MediaPlayer(video_path)
 
@@ -87,14 +87,16 @@ def main():
 
     pygame.display.set_caption("Instagram Random Player")
 
+    n = 0
     videos = load_videos()
     if not videos:
         print("Aucune vidéo trouvée.")
         return
 
     while True:
+        n += 1
         video = random.choice(videos)
-        play_video(screen, video)
+        play_video(screen, video, n)
 
 if __name__ == "__main__":
     main()
