@@ -1,14 +1,13 @@
 import os
 import random
 import sys
-import cv2
 import pygame
+from ffpyplayer.player import MediaPlayer
 
 # ===== CONFIG =====
 VIDEO_FOLDER = r"G:\Vidéo\Instagram"
 SUPPORTED_FORMATS = (".mp4", ".mov", ".avi", ".mkv")
-WINDOW_WIDTH = 400
-WINDOW_HEIGHT = 700
+FULLSCREEN = True
 # ==================
 
 def load_videos():
@@ -21,52 +20,55 @@ def load_videos():
 def play_video(screen, video_path):
     print("Lecture :", video_path)
 
-    cap = cv2.VideoCapture(video_path)
-
-    if not cap.isOpened():
-        print("Erreur ouverture vidéo")
-        return
+    player = MediaPlayer(video_path)
 
     clock = pygame.time.Clock()
 
-    while cap.isOpened():
-        ret, frame = cap.read()
-        if not ret:
+    while True:
+        frame, val = player.get_frame()
+
+        if val == 'eof':
             break
 
-        # Convertir BGR → RGB
-        frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+        if frame is not None:
+            img, t = frame
+            w, h = img.get_size()
 
-        # Redimensionner au format vertical
-        frame = cv2.resize(frame, (WINDOW_WIDTH, WINDOW_HEIGHT))
+            image = pygame.image.frombuffer(img.to_bytearray()[0], (w, h), 'RGB')
 
-        frame = pygame.surfarray.make_surface(frame.swapaxes(0, 1))
+            screen_width, screen_height = screen.get_size()
+            image = pygame.transform.scale(image, (screen_width, screen_height))
 
-        screen.blit(frame, (0, 0))
-        pygame.display.update()
+            screen.blit(image, (0, 0))
+            pygame.display.update()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                cap.release()
+                player.close_player()
                 pygame.quit()
                 sys.exit()
 
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_SPACE:
-                    cap.release()
-                    return  # vidéo suivante
+                    player.close_player()
+                    return
                 if event.key == pygame.K_ESCAPE:
-                    cap.release()
+                    player.close_player()
                     pygame.quit()
                     sys.exit()
 
-        clock.tick(30)  # limite FPS
+        clock.tick(30)
 
-    cap.release()
+    player.close_player()
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((WINDOW_WIDTH, WINDOW_HEIGHT))
+
+    if FULLSCREEN:
+        screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+    else:
+        screen = pygame.display.set_mode((400, 700))
+
     pygame.display.set_caption("Instagram Random Player")
 
     videos = load_videos()
