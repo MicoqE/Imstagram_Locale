@@ -1,0 +1,121 @@
+# 🎬 Instagram Local Video Player
+
+Un lecteur vidéo en Python inspiré du fonctionnement d’un fil Instagram / TikTok, permettant de parcourir automatiquement une grande collection de vidéos locales de manière aléatoire.
+
+---
+
+## 🚀 Fonctionnalités
+
+* 🔀 Lecture aléatoire des vidéos
+* 🔁 Anti-répétition (évite de revoir les mêmes vidéos trop rapidement)
+* 🖥️ Mode plein écran
+* 📱 Support des vidéos verticales (ratio respecté)
+* ⏸️ Pause / reprise
+* ⏭️ Passage à la vidéo suivante
+* 🗑️ Suppression directe des vidéos
+* 🔊 Lecture avec audio synchronisé
+
+---
+
+## 🎮 Contrôles
+
+| Touche   | Action             |
+| -------- | ------------------ |
+| `ESPACE` | Vidéo suivante     |
+| `P`      | Pause / Reprendre  |
+| `SUPPR`  | Supprimer la vidéo |
+| `ECHAP`  | Quitter            |
+
+---
+
+## 🛠️ Installation
+
+### 1. Cloner le projet
+
+```bash
+git clone <url-du-repo>
+cd Instagram_Local_Player
+```
+
+### 2. Installer les dépendances
+
+```bash
+pip install pygame ffpyplayer
+```
+
+---
+
+## ⚙️ Configuration
+
+Dans le fichier `main.py`, modifier le chemin du dossier contenant les vidéos :
+
+```python
+VIDEO_FOLDER = r"G:\Vidéo\Instagram"
+```
+
+Formats supportés :
+
+```python
+(".mp4", ".mov", ".avi", ".mkv")
+```
+
+---
+
+## ▶️ Lancer le projet
+
+```bash
+python main.py
+```
+
+---
+
+## 🧠 Fonctionnement
+
+Le programme :
+
+1. Charge toutes les vidéos d’un dossier
+2. Sélectionne une vidéo aléatoire
+3. La lit avec audio synchronisé
+4. Passe automatiquement à la suivante
+5. Évite de rejouer les vidéos récentes (anti-répétition)
+
+---
+
+## ⚠️ Attention
+
+* La suppression (`SUPPR`) est **définitive**
+* Les vidéos supprimées ne peuvent pas être récupérées
+* Assurez-vous de travailler sur une copie si nécessaire
+
+---
+
+## 📁 Structure du projet
+
+```
+Instagram_Local_Player/
+│── main.py
+│── README.md
+│── .git/
+```
+
+---
+
+## 🔮 Améliorations possibles
+
+* ❤️ Système de favoris
+* 📊 Statistiques de visionnage
+* 🧠 Algorithme de recommandation
+* 🔄 Animation de transition (style swipe)
+* 🎨 Interface utilisateur améliorée
+
+---
+
+## 👨‍💻 Auteur
+
+Projet développé par [Ton Nom]
+
+---
+
+## 📜 Licence
+
+Ce projet est libre d’utilisation et peut être modifié selon vos besoins.
