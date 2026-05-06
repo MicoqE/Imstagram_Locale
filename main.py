@@ -5,7 +5,7 @@ import pygame
 from ffpyplayer.player import MediaPlayer
 
 # ===== CONFIG =====
-VIDEO_FOLDER = r"G:\Vidéo\Instagram"
+VIDEO_FOLDER = r"PATH_TO_YOUR_VIDEOS"
 SUPPORTED_FORMATS = (".mp4", ".mov", ".avi", ".mkv")
 FULLSCREEN = True
 # ==================
