@@ -47,10 +47,11 @@ pip install pygame ffpyplayer
 
 ## ⚙️ Configuration
 
-Dans le fichier `main.py`, modifier le chemin du dossier contenant les vidéos :
+Dans le fichier `app.py`, modifier le chemin du dossier contenant les vidéos :
+Créer un fichier `config.py` à la racine du projet :
 
 ```python
-VIDEO_FOLDER = r"G:\Vidéo\Instagram"
+VIDEO_FOLDER = r"CHEMIN_VERS_VOS_VIDEOS"
 ```
 
 Formats supportés :

@@ -3,11 +3,12 @@ import random
 import sys
 import pygame
 from ffpyplayer.player import MediaPlayer
+from config import VIDEO_FOLDER
 
 # ===== CONFIG =====
-VIDEO_FOLDER = r"PATH_TO_YOUR_VIDEOS"
 SUPPORTED_FORMATS = (".mp4", ".mov", ".avi", ".mkv")
-FULLSCREEN = True
+FULLSCREEN = False
+ANTI_REPEAT = 100
 # ==================
 
 def load_videos():
@@ -119,7 +120,6 @@ def main():
 
     n = 0
     history = []
-    ANTI_REPEAT = 100
 
     videos = load_videos()
     if not videos:
