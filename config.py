@@ -1,1 +1,0 @@
-VIDEO_FOLDER = r"G:\Vidéo\Instagram"
